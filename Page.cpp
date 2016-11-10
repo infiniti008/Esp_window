@@ -2,6 +2,34 @@
 #include "Page.h"
 //using namespace std;
 
+
+String To_home(){
+
+return("<!DOCTYPE html>\
+<html>\
+  <head>\
+  <style type=\"text/css\">\
+      .btn{\
+        border: 2px solid #7586AC;\
+        border-radius: 5px;\
+        background: #00AF64;\
+        width: 200px;\
+        height: 50px;\
+        font\-size\: 20px;\
+        font-family:monospace;\
+        margin-top: 15px;\
+        margin-left: 8px;\
+      }\
+    </style>\
+    <meta charset=\"utf-8\">\
+  </head>\
+  <body>\
+  <p>{{Text}}</p><br>\
+   <input type=\"button\" value=\"Вернуться\" class=\"btn\" onclick=\"location.href=\'/\'\"><br>\
+    </body>\
+</html>");
+}
+
 String Page_home(){
   String page_home = "<!DOCTYPE html>\
 <html>\

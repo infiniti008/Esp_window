@@ -5,6 +5,7 @@
 //#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
+int current_pos = 0;
 
 Motor motor(D2, D5, D6, D1);
 
@@ -72,14 +73,19 @@ void Handle_close_window(){
 }
 
 void Handle_open_to(){
-  String procent = server.arg("open_procent");
-  String mes = "Окно открывается на ";
+  int procent = server.arg("open_procent").toInt();
+  int obor = current_pos - ((procent/5)*3);
+  String to_home = To_home();
+  String mes = "Окно открывается до ";
   mes += procent;
   mes += " процентов"; 
-  server.send(200, "text/html", mes);
+  if(obor == 0) mes = "Вы уже находитесь в указанной позиции";
+  to_home.replace("{{Text}}", mes);
+  server.send(200, "text/html", to_home);
   Serial.println(mes);
-  int gh = procent.toInt();
-  Serial.println(gh);
+  if(obor > 0) motor.RunBack(abs(obor), 1);
+  else if(obor < 0) motor.RunForward(abs(obor), 1);
+  current_pos = (procent/5)*3;
 }
 
 void Handle_timer(){
