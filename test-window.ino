@@ -1,6 +1,6 @@
 #include "Motor.h"
 #include "Page.h"
-#include "Handle.h"
+//#include "Handle.h"
 //#include <ESP8266WiFi.h>
 //#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
@@ -37,9 +37,12 @@ void setup() {
   Serial.println("");
 
 // Handle http requests
-  server.on("/", Handle_home_page);
-  server.on("/on", fd);
-  server.on("/get_time", Handle_get_time);
+  server.on("/", Handle_home);
+  server.on("/open_window", Handle_open_window);
+  server.on("/close_window", Handle_close_window);
+  server.on("/open_to", Handle_open_to);
+  server.on("/timer", Handle_timer);
+  server.on("/plan", Handle_plan); 
   
   // Start the web server
   server.begin();
@@ -53,26 +56,47 @@ void loop() {
 
 // Router
 
-void fd(){
-  motor.RunForward(2, 1);
-  server.send(200, "text/html", "ssdsdsdsd");
-  }
-
 void Handle_home(){
   String page_home = Page_home();
   server.send(200, "text/html", page_home);
-  }
+}
 
+void Handle_open_window(){
+  Serial.println("Window is opening");
+  server.send(200, "text/html", "Window is opening");
+}
+
+void Handle_close_window(){
+  Serial.println("Window is closing");
+  server.send(200, "text/html", "Window is closing");
+}
+
+void Handle_open_to(){
+  String procent = server.arg("open_procent");
+  String mes = "Окно открывается на ";
+  mes += procent;
+  mes += " процентов"; 
+  server.send(200, "text/html", mes);
+  Serial.println(mes);
+  int gh = procent.toInt();
+  Serial.println(gh);
+}
+
+void Handle_timer(){
+  Serial.println("Window is closing");
+  server.send(200, "text/html", "Window is closing");
+}
+
+void Handle_plan(){
+  Serial.println("Window is closing");
+  server.send(200, "text/html", "Window is closing");
+}
 
 void Handle_get_time(){
-
-//WiFiClient client = server.client();
-String f = server.arg("time");
+  //WiFiClient client = server.client();
+  String f = server.arg("time");
   Serial.println(f);
-  String _page_home = Page_home();
-server.send(200, "text/html", _page_home);
-
-  }
+}
 
 
 
