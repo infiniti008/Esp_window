@@ -8,6 +8,7 @@ String To_home(){
 return("<!DOCTYPE html>\
 <html>\
   <head>\
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\
   <style type=\"text/css\">\
       .btn{\
         border: 2px solid #7586AC;\
@@ -35,6 +36,7 @@ String Page_home(){
   <html>\
     <head>\
       <meta charset=\"utf-8\">\
+      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\
       <title></title>\
       <style type=\"text/css\">\
         .btn{\

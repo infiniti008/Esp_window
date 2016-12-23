@@ -13,14 +13,6 @@ Motor::Motor(byte pin1, byte pin2, byte pin3, byte pin4){
   pinMode(in4, OUTPUT);
 }
 
-//Morse::Morse(int pin)
-//{
-//  pinMode(pin, OUTPUT);
-//  _pin = pin;
-//}
-
-
-
 void Motor::RunForward(int obor, int dl){
   Serial.print("Run forward drive, oborotov: ");
   Serial.println(obor);
