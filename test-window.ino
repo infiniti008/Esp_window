@@ -15,6 +15,7 @@ unsigned long time_run = 0;
 String to_do;
 
 char *ssid_ap = "ESPapoint"; // ssid to access point
+char *ssid_con = "xiao"; // ssid to conection
 char *password_con = "19111990"; // password to ssid_con
 byte n = 0; // counter time
 byte tim = 20; //time to wait connection to ssid_con
